@@ -67,6 +67,36 @@ print("By category:")
 
 for category in category_totals:
     print(" ",category, "Rs", category_totals[category])
+      
+print("\n")
+largest_expense = expenses[0]
+
+for expense in expenses:
+
+    if expense["amount"] > largest_expense["amount"]:
+        largest_expense = expense
+print("Largest expense:", largest_expense["item"],"Amount: Rs", largest_expense["amount"])
+print("\n")
+
+approval_count = 0
+
+# First loop: Count expenses exceeding the approval limit
+for expense in expenses:
+
+    if expense["amount"] > APPROVAL_LIMIT:
+        approval_count += 1
+
+print(f"Needs approval (over Rs {APPROVAL_LIMIT:,}): {approval_count}")
+
+# Second loop: Display the expenses requiring approval
+for expense in expenses:
+
+    if expense["amount"] > APPROVAL_LIMIT:
+        print(
+            "-",
+            expense["item"] + ":",
+            f"Rs {expense['amount']:,}"
+        )
 
 
 
